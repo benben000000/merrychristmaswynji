@@ -1,52 +1,73 @@
-# Merry Christmas, Wynji! 🎄
+# React + TypeScript + Vite
 
-A special interactive Christmas animation built with Python and Pygame.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## How to Run Locally
+Currently, two official plugins are available:
 
-1. **Install Dependencies**
-   Ensure you have Python installed. Then install `pygame`:
-   ```bash
-   pip install pygame pygbag
-   ```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-2. **Run the Animation**
-   Navigate to the project directory and run:
-   ```bash
-   python christmas_wynji/main.py
-   ```
+## React Compiler
 
-## Controls & Secrets
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Basic Interactions
-- **Ornaments**: Click them to make them swing!
-- **Presents**: Click the presents under the tree to unwrap them. One might hold a special surprise...
-- **Star**: The star on top of the tree looks special. Maybe give it a click?
-- **Envelope**: Click the envelope to read a special letter.
+## Expanding the ESLint configuration
 
-### Hidden Easter Eggs
-- **Heart Mode**: Press **`H`** on your keyboard to show some love.
-- **Finale**: Press **`F`** to trigger the grand fireworks finale.
-- **Konami Code**: Can you recall the classic cheat code? (`Up, Up, Down, Down, Left, Right, Left, Right, B, A`) - Try entering it for a fun surprise!
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## How to Put on the Web (for Wynji)
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-To share this with Wynji as a web link, you can use `pygbag` to convert it to WebAssembly.
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-1. **Build for Web**
-   From the parent folder (containing the `christmas_wynji` folder), run:
-   ```bash
-   pygbag christmas_wynji
-   ```
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-2. **Test**
-   It will start a local server (usually `localhost:8000`). Open that in your browser to test.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-3. **Deploy to GitHub Pages**
-   - The build output is in `build/web`.
-   - Upload the contents of `build/web` to a GitHub repository.
-   - Enable GitHub Pages for that repository.
-   - Send the link to Wynji!
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
----
-*Created with ❤️*
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
