@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Background: React.FC = () => {
     return (
-        <div className="fixed inset-0 -z-10 w-full h-full overflow-hidden bg-gradient-to-b from-[#020617] via-[#172554] to-[#1e3a8a]">
+        <div className="fixed inset-0 -z-10 w-full h-full overflow-hidden bg-gradient-to-b from-[#0f172a] via-[#1e40af] to-[#60a5fa]">
             {/* Stars */}
             <div className="absolute inset-0 opacity-50">
                 {[...Array(50)].map((_, i) => (

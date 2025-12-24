@@ -22,12 +22,15 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
         // but strictly bounded.
 
         // Safety margins
-        const padding = 100;
-        const maxWidth = window.innerWidth - padding * 2;
-        const maxHeight = window.innerHeight - padding * 2;
+        const padding = 50;
+        const buttonWidth = 220; // Approx width of the "No" button
+        const buttonHeight = 60;
 
-        const randomX = Math.random() * maxWidth + padding;
-        const randomY = Math.random() * maxHeight + padding;
+        const maxWidth = window.innerWidth - buttonWidth - padding;
+        const maxHeight = window.innerHeight - buttonHeight - padding;
+
+        const randomX = Math.max(padding, Math.random() * maxWidth);
+        const randomY = Math.max(padding, Math.random() * maxHeight);
 
         setButtonStyle({
             position: 'fixed',
