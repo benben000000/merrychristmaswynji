@@ -47,7 +47,7 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
             onHoverStart={moveButton}
             onTouchStart={moveButton}
             style={buttonStyle}
-            className="px-8 py-3 bg-gray-600/50 backdrop-blur-md text-white font-semibold rounded-full border border-white/20 hover:bg-red-500/50 transition-colors shadow-2xl z-40"
+            className="px-8 py-3 bg-white text-red-600 font-extrabold rounded-full border-4 border-red-600 hover:bg-gray-100 transition-colors shadow-2xl z-40"
         >
             {text}
         </motion.button>
