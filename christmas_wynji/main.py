@@ -18,7 +18,7 @@ async def main():
 
     # Initialize Components
     bg = background.Background()
-    snow_controller = snow.SnowController(count=150)
+    snow_controller = snow.SnowController(count=80)
     game_tree = tree.ChristmasTree(SCREEN_WIDTH, SCREEN_HEIGHT)
     text_renderer = text_effects.TextRenderer()
     
