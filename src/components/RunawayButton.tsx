@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import ReactDOM from 'react-dom';
 
 interface RunawayButtonProps {
     onAttemptClick?: () => void;
@@ -57,17 +58,17 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
         if (onAttemptClick) onAttemptClick();
     };
 
-    return (
+    return ReactDOM.createPortal(
         <motion.button
             animate={{ x: position.x, y: position.y }}
             transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
             onHoverStart={moveButton}
             onTouchStart={moveButton}
             style={buttonStyle}
-            // Add max-width constraint to text as well
-            className="px-8 py-3 bg-white text-red-600 font-extrabold rounded-full border-4 border-red-600 hover:bg-gray-100 transition-colors shadow-2xl z-50 whitespace-nowrap"
+            className="px-8 py-3 bg-white text-red-600 font-extrabold rounded-full border-4 border-red-600 hover:bg-gray-100 transition-colors shadow-2xl z-[9999] whitespace-nowrap"
         >
             {text}
-        </motion.button>
+        </motion.button>,
+        document.body
     );
 };

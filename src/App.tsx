@@ -66,7 +66,7 @@ function App() {
                 Merry Christmas, Wynji! ❄️
               </h1>
 
-              <div className="glass-card p-10 flex flex-col items-center gap-8">
+              <div className="glass-card p-16 flex flex-col items-center gap-12">
                 <h2 className="text-3xl font-semibold text-white">Do you love me? ❤️</h2>
 
                 <div className="flex items-center gap-12 h-20 justify-center relative w-full">

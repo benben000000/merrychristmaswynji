@@ -18,9 +18,9 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
                     style={{
                         left: `${flake.left}%`,
                         top: '-10px',
-                        width: '10px',
-                        height: '10px',
-                        animation: `fall-fast ${flake.duration}s linear infinite`,
+                        width: '15px',
+                        height: '15px',
+                        animation: `fall-super ${flake.duration}s linear infinite`,
                         animationDelay: `${flake.delay}s`
                     }}
                 />
@@ -37,9 +37,9 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
 
 
             <style>{`
-                @keyframes fall-fast {
-                    0% { transform: translateY(-10vh) translateX(0px); }
-                    100% { transform: translateY(110vh) translateX(20px); }
+                @keyframes fall-super {
+                    0% { transform: translateY(-10vh) translateX(0px); opacity: 1; }
+                    100% { transform: translateY(110vh) translateX(20px); opacity: 0.5; }
                 }
             `}</style>
         </div>
