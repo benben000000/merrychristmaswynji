@@ -67,7 +67,7 @@ function App() {
               </h1>
 
               <div
-                className="glass-card p-16 flex flex-col items-center justify-center gap-12"
+                className="glass-card relative p-16 flex flex-col items-center justify-center gap-12"
                 style={{ width: '50vw', minHeight: '500px' }}
               >
                 <h2 className="text-3xl font-semibold text-white">Do you love me? ❤️</h2>
@@ -80,7 +80,7 @@ function App() {
                   }} />
 
                   {/* No Button (Runaway) */}
-                  <div className="relative w-32 h-12 flex items-center justify-center">
+                  <div className="w-32 h-12 flex items-center justify-center">
                     <RunawayButton onAttemptClick={handleStart} />
                   </div>
                 </div>

@@ -15,7 +15,7 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
         "I'm fast!", "Catch me!", "Too slow!", "Nice try!", "Nope!", "Really?"
     ];
 
-    const [buttonStyle, setButtonStyle] = useState<any>({ position: 'absolute' });
+    const [buttonStyle, setButtonStyle] = useState<any>({});
 
     // State to track next side to jump to (Ping Pong effect)
     const [nextSide, setNextSide] = useState<'left' | 'right'>('right');
