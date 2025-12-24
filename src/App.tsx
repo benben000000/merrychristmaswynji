@@ -52,7 +52,7 @@ function App() {
       ))}
 
       {/* Main Content Area */}
-      <div className="z-10 flex flex-col items-center justify-center w-full max-w-4xl px-4 min-h-[60vh]">
+      <div className="z-10 flex flex-col items-center justify-center w-full px-4 min-h-[60vh]">
         <AnimatePresence mode="wait">
           {!celebrating ? (
             <motion.div

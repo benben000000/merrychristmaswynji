@@ -21,41 +21,35 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
     const [nextSide, setNextSide] = useState<'left' | 'right'>('right');
 
     const moveButton = (e: any) => {
-        // Toggle side
-        const targetSide = nextSide;
-        setNextSide(prev => prev === 'left' ? 'right' : 'left');
+        const btn = e.target;
+        const parent = btn.offsetParent; // The glass card (relative container)
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+        if (parent) {
+            // Get parent dimensions
+            const parentWidth = parent.clientWidth;
+            const parentHeight = parent.clientHeight;
 
-        let randomX;
+            // Get button dimensions (approx or from element)
+            const btnWidth = btn.offsetWidth || 150;
+            const btnHeight = btn.offsetHeight || 50;
 
-        if (targetSide === 'left') {
-            // Left Safe Zone: 10% to 40%
-            const minX = width * 0.1;
-            const maxX = width * 0.4;
-            randomX = Math.random() * (maxX - minX) + minX;
-        } else {
-            // Right Safe Zone: 50% to 80% (Leaves 20% buffer on right)
-            const minX = width * 0.5;
-            const maxX = width * 0.8;
-            randomX = Math.random() * (maxX - minX) + minX;
+            // Calculate strict bounds WITHIN the parent
+            const maxX = parentWidth - btnWidth - 40; // 40px buffer
+            const maxY = parentHeight - btnHeight - 40;
+
+            const randomX = Math.random() * maxX;
+            // Ensure Y doesn't go too high (overlap title) or low
+            const randomY = Math.random() * maxY;
+
+            // Stay absolute relative to parent
+            setButtonStyle({
+                position: 'absolute'
+            });
+
+            setPosition({ x: randomX, y: randomY });
+            setText(phrases[Math.floor(Math.random() * phrases.length)]);
+            if (onAttemptClick) onAttemptClick();
         }
-
-        // Vertical Safe Zone: 15% to 85% (Avoid extreme top/bottom)
-        const minY = height * 0.15;
-        const maxY = height * 0.85;
-        const randomY = Math.random() * (maxY - minY) + minY;
-
-        setButtonStyle({
-            position: 'fixed',
-            left: 0,
-            top: 0
-        });
-
-        setPosition({ x: randomX, y: randomY });
-        setText(phrases[Math.floor(Math.random() * phrases.length)]);
-        if (onAttemptClick) onAttemptClick();
     };
 
     return (
