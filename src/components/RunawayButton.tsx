@@ -6,7 +6,6 @@ interface RunawayButtonProps {
 }
 
 export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) => {
-    // const controls = useAnimation();
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [text, setText] = useState("No");
 
@@ -20,25 +19,20 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
     const moveButton = (e: any) => {
         // Switch to fixed positioning on first interaction
 
-        // Aggressive Safety margins
-        const padding = 50;
-        const assumedButtonWidth = 300; // Overestimate width to be safe
-        const assumedButtonHeight = 80;
+        // Use conservative percentage-based safe zones
+        const width = window.innerWidth;
+        const height = window.innerHeight;
 
-        // Calculate strict available area
-        const maxWidth = window.innerWidth - assumedButtonWidth - padding;
-        const maxHeight = window.innerHeight - assumedButtonHeight - padding;
+        // X: Strict lockdown: 50px padding, MAX width is Screen - 300px.
+        const safeWidth = Math.max(10, width - 350); // 300 button + 50 padding
+        const randomX = Math.max(50, Math.random() * safeWidth);
 
-        // Ensure we don't return negative values if screen is tiny
-        const safeMaxWidth = Math.max(padding, maxWidth);
-        const safeMaxHeight = Math.max(padding, maxHeight);
-
-        // Generate random coordinate within precise bounds
-        const randomX = Math.floor(Math.random() * (safeMaxWidth - padding) + padding);
-        const randomY = Math.floor(Math.random() * (safeMaxHeight - padding) + padding);
+        // Y: Strict lockdown: 50px padding, MAX height is Screen - 150px.
+        const safeHeight = Math.max(10, height - 200); // 100 button + 100 padding
+        const randomY = Math.max(50, Math.random() * safeHeight);
 
         setButtonStyle({
-            position: 'fixed', // Use fixed to ignore parent relative positioning
+            position: 'fixed',
             left: 0,
             top: 0
         });
@@ -55,6 +49,7 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
             onHoverStart={moveButton}
             onTouchStart={moveButton}
             style={buttonStyle}
+            // Add max-width constraint to text as well
             className="px-8 py-3 bg-white text-red-600 font-extrabold rounded-full border-4 border-red-600 hover:bg-gray-100 transition-colors shadow-2xl z-50 whitespace-nowrap"
         >
             {text}

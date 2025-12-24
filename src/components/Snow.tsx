@@ -9,12 +9,12 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
     })));
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-            {/* Falling Flakes */}
+        <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
+            {/* Falling Flakes - High Contrast */}
             {flakes.map((flake) => (
                 <div
                     key={flake.id}
-                    className="absolute bg-white rounded-full opacity-80"
+                    className="absolute bg-white rounded-full shadow-[0_0_5px_white]"
                     style={{
                         left: `${flake.left}%`,
                         top: '-10px',
