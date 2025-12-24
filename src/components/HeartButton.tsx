@@ -9,13 +9,13 @@ interface HeartButtonProps {
 export const HeartButton: React.FC<HeartButtonProps> = ({ onClick }) => {
     return (
         <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.15 }}
             whileTap={{ scale: 0.95 }}
             onClick={onClick}
-            className="px-8 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-500 transition-colors flex items-center gap-2 animate-pulse-slow"
+            className="px-12 py-5 bg-red-600 text-white text-2xl font-bold rounded-full shadow-[0_0_20px_rgba(239,68,68,0.6)] hover:bg-red-500 transition-all flex items-center gap-3 animate-pulse"
         >
-            <Heart className="w-5 h-5 fill-current" />
-            Yes, I do!
+            <Heart className="w-8 h-8 fill-current" />
+            YES, I DO!
         </motion.button>
     );
 };

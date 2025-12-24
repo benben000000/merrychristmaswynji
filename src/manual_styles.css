@@ -316,23 +316,8 @@ body {
 }
 
 .animated-bg {
-    background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #0f0c29);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    background: black;
+    /* Removed gradient animation for user comfort */
 }
 
 /* Utilities for SVGs/Transforms */

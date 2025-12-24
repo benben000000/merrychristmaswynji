@@ -6,7 +6,7 @@ import { LoveLetter } from './components/LoveLetter';
 import { MusicPlayer } from './components/MusicPlayer';
 import { ChristmasTree } from './components/ChristmasTree';
 import { DancingSurprise } from './components/DancingSurprise';
-import ReactConfetti from 'react-confetti';
+import { Snow } from './components/Snow';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -36,8 +36,8 @@ function App() {
       <Background />
       <MusicPlayer start={started} />
 
-      {/* Confetti Overlay */}
-      {celebrating && <ReactConfetti numberOfPieces={200} recycle={true} />}
+      {/* Snow Effect */}
+      <Snow piling={celebrating} />
 
       {/* Background Tree */}
       <ChristmasTree onOrnamentClick={handleOrnamentClick} />
