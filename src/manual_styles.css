@@ -330,5 +330,32 @@ body {
 }
 
 .left-1\/2 {
+    transform: translateX(-50%);
     left: 50%;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) translateX(0px);
+    }
+
+    100% {
+        transform: translateY(110vh) translateX(20px);
+    }
+}
+
+@keyframes swing {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+.animate-swing {
+    animation: swing 3s ease-in-out infinite;
 }

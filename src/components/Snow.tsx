@@ -18,8 +18,8 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
                     style={{
                         left: `${flake.left}%`,
                         top: '-10px',
-                        width: '8px',
-                        height: '8px',
+                        width: '10px',
+                        height: '10px',
                         animation: `fall ${flake.duration}s linear infinite`,
                         animationDelay: `${flake.delay}s`
                     }}

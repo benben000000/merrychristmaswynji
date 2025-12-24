@@ -16,20 +16,35 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
 
     const [buttonStyle, setButtonStyle] = useState<any>({ position: 'absolute' });
 
-    const moveButton = (e: any) => {
-        // Switch to fixed positioning on first interaction
+    // State to track next side to jump to (Ping Pong effect)
+    const [nextSide, setNextSide] = useState<'left' | 'right'>('right');
 
-        // Use conservative percentage-based safe zones
+    const moveButton = (e: any) => {
+        // Toggle side
+        const targetSide = nextSide;
+        setNextSide(prev => prev === 'left' ? 'right' : 'left');
+
         const width = window.innerWidth;
         const height = window.innerHeight;
 
-        // X: Strict lockdown: 50px padding, MAX width is Screen - 300px.
-        const safeWidth = Math.max(10, width - 350); // 300 button + 50 padding
-        const randomX = Math.max(50, Math.random() * safeWidth);
+        let randomX;
 
-        // Y: Strict lockdown: 50px padding, MAX height is Screen - 150px.
-        const safeHeight = Math.max(10, height - 200); // 100 button + 100 padding
-        const randomY = Math.max(50, Math.random() * safeHeight);
+        if (targetSide === 'left') {
+            // Left Safe Zone: 10% to 40%
+            const minX = width * 0.1;
+            const maxX = width * 0.4;
+            randomX = Math.random() * (maxX - minX) + minX;
+        } else {
+            // Right Safe Zone: 50% to 80% (Leaves 20% buffer on right)
+            const minX = width * 0.5;
+            const maxX = width * 0.8;
+            randomX = Math.random() * (maxX - minX) + minX;
+        }
+
+        // Vertical Safe Zone: 15% to 85% (Avoid extreme top/bottom)
+        const minY = height * 0.15;
+        const maxY = height * 0.85;
+        const randomY = Math.random() * (maxY - minY) + minY;
 
         setButtonStyle({
             position: 'fixed',
