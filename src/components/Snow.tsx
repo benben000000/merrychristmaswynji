@@ -9,7 +9,7 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
     })));
 
     return (
-        <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
             {/* Falling Flakes */}
             {flakes.map((flake) => (
                 <div

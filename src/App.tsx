@@ -7,6 +7,7 @@ import { MusicPlayer } from './components/MusicPlayer';
 import { ChristmasTree } from './components/ChristmasTree';
 import { DancingSurprise } from './components/DancingSurprise';
 import { Snow } from './components/Snow';
+import { Decorations } from './components/Decorations';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
     >
       <Background />
       <MusicPlayer start={started} />
+
+      {/* Decorations Layer */}
+      <Decorations />
 
       {/* Snow Effect */}
       <Snow piling={celebrating} />
