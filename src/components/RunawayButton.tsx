@@ -60,7 +60,7 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
     return (
         <motion.button
             animate={{ x: position.x, y: position.y }}
-            transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
+            transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
             onHoverStart={moveButton}
             onTouchStart={moveButton}
             style={buttonStyle}

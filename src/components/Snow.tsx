@@ -20,7 +20,7 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
                         top: '-10px',
                         width: '10px',
                         height: '10px',
-                        animation: `fall ${flake.duration}s linear infinite`,
+                        animation: `fall-fast ${flake.duration}s linear infinite`,
                         animationDelay: `${flake.delay}s`
                     }}
                 />
@@ -36,6 +36,12 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
             />
 
 
+            <style>{`
+                @keyframes fall-fast {
+                    0% { transform: translateY(-10vh) translateX(0px); }
+                    100% { transform: translateY(110vh) translateX(20px); }
+                }
+            `}</style>
         </div>
     );
 };
