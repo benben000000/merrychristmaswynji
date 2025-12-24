@@ -57,16 +57,16 @@ function App() {
           {!celebrating ? (
             <motion.div
               key="question"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -50 }}
-              className="text-center space-y-12"
+              className="text-center space-y-12 w-full flex flex-col items-center"
             >
               <h1 className="font-christmas text-5xl md:text-7xl text-white text-glow mb-12">
                 Merry Christmas, Wynji! ❄️
               </h1>
 
-              <div className="glass-card p-16 flex flex-col items-center gap-12">
+              <div className="glass-card p-20 w-[90vw] max-w-6xl min-h-[600px] flex flex-col items-center justify-center gap-16">
                 <h2 className="text-3xl font-semibold text-white">Do you love me? ❤️</h2>
 
                 <div className="flex items-center gap-12 h-20 justify-center relative w-full">
