@@ -35,12 +35,7 @@ export const Snow: React.FC<{ piling: boolean }> = ({ piling }) => {
                 }}
             />
 
-            <style>{`
-        @keyframes fall {
-          0% { transform: translateY(-10vh) translateX(0px); }
-          100% { transform: translateY(110vh) translateX(20px); }
-        }
-      `}</style>
+
         </div>
     );
 };

@@ -29,7 +29,7 @@ export const Decorations: React.FC = () => {
                         const color = i % 2 === 0 ? "url(#gradRed)" : "url(#gradGold)";
 
                         return (
-                            <g key={i} className="animate-swing origin-top" style={{ animationDelay: `${i * 0.5}s` }}>
+                            <g key={i} className="origin-top">
                                 {/* String */}
                                 <line x1={`${x}%`} y1="0" x2={`${x}%`} y2={length} stroke="#e5e7eb" strokeWidth="1" />
                                 {/* Ornament (Radius in pixels) */}
