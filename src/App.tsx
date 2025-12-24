@@ -62,8 +62,8 @@ function App() {
               exit={{ opacity: 0, y: -50 }}
               className="text-center space-y-12"
             >
-              <h1 className="font-christmas text-6xl md:text-8xl text-white text-glow mb-8">
-                Merry Christmas, Wynji! 🎄
+              <h1 className="font-christmas text-5xl md:text-7xl text-white text-glow mb-12">
+                Merry Christmas, Wynji!
               </h1>
 
               <div className="glass-card p-10 flex flex-col items-center gap-8">
