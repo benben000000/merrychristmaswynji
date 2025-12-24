@@ -72,7 +72,7 @@ function App() {
               >
                 <h2 className="text-3xl font-semibold text-white">Do you love me? ❤️</h2>
 
-                <div className="flex items-center gap-12 h-20 justify-center relative w-full">
+                <div className="flex items-center gap-12 h-20 justify-center w-full">
                   {/* Yes Button (Stable) */}
                   <HeartButton onClick={() => {
                     setCelebrating(true);

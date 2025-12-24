@@ -41,14 +41,20 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
             const randomX = Math.max(20, Math.random() * maxX);
             const randomY = Math.max(20, Math.random() * maxY);
 
-            // Calculate Delta from current STATIC layout position
-            const deltaX = randomX - btn.offsetLeft;
-            const deltaY = randomY - btn.offsetTop;
+            // Detach from flow and use exact coordinates
+            // This is safer than Delta because offsets can change
+            setButtonStyle({
+                position: 'absolute',
+                left: 0,
+                top: 0
+            });
+
+            // With absolute positioning at (0,0), translate(x,y) moves to exactly x,y
+            setPosition({ x: randomX, y: randomY });
 
             // Random Rotation for "Slant"
-            const randomRotate = (Math.random() - 0.5) * 30; // -15 to +15 deg
+            const randomRotate = (Math.random() - 0.5) * 60; // -30 to +30 deg (increased slant)
 
-            setPosition({ x: deltaX, y: deltaY });
             setRotation(randomRotate);
             setText(phrases[Math.floor(Math.random() * phrases.length)]);
             if (onAttemptClick) onAttemptClick();
