@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-
 
 interface RunawayButtonProps {
     onAttemptClick?: () => void;
 }
 
 export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) => {
+    const btnRef = useRef<HTMLButtonElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [rotation, setRotation] = useState(0);
     const [text, setText] = useState("No");
 
     const phrases = [
@@ -17,36 +18,38 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
 
     const [buttonStyle, setButtonStyle] = useState<any>({});
 
-    // State to track next side to jump to (Ping Pong effect)
-    const [nextSide, setNextSide] = useState<'left' | 'right'>('right');
+    const moveButton = () => {
+        const btn = btnRef.current;
+        if (!btn) return;
 
-    const moveButton = (e: any) => {
-        const btn = e.target;
-        const parent = btn.offsetParent; // The glass card (relative container)
+        const parent = btn.offsetParent as HTMLElement; // The glass card (relative container)
 
         if (parent) {
             // Get parent dimensions
             const parentWidth = parent.clientWidth;
             const parentHeight = parent.clientHeight;
 
-            // Get button dimensions (approx or from element)
-            const btnWidth = btn.offsetWidth || 150;
-            const btnHeight = btn.offsetHeight || 50;
+            // Get button dimensions
+            const btnWidth = btn.offsetWidth;
+            const btnHeight = btn.offsetHeight;
 
             // Calculate strict bounds WITHIN the parent
-            const maxX = parentWidth - btnWidth - 40; // 40px buffer
+            const maxX = parentWidth - btnWidth - 40; // Buffer
             const maxY = parentHeight - btnHeight - 40;
 
-            const randomX = Math.random() * maxX;
-            // Ensure Y doesn't go too high (overlap title) or low
-            const randomY = Math.random() * maxY;
+            // Random Target Position
+            const randomX = Math.max(20, Math.random() * maxX);
+            const randomY = Math.max(20, Math.random() * maxY);
 
-            // Stay absolute relative to parent
-            setButtonStyle({
-                position: 'absolute'
-            });
+            // Calculate Delta from current STATIC layout position
+            const deltaX = randomX - btn.offsetLeft;
+            const deltaY = randomY - btn.offsetTop;
 
-            setPosition({ x: randomX, y: randomY });
+            // Random Rotation for "Slant"
+            const randomRotate = (Math.random() - 0.5) * 30; // -15 to +15 deg
+
+            setPosition({ x: deltaX, y: deltaY });
+            setRotation(randomRotate);
             setText(phrases[Math.floor(Math.random() * phrases.length)]);
             if (onAttemptClick) onAttemptClick();
         }
@@ -54,8 +57,9 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
 
     return (
         <motion.button
-            animate={{ x: position.x, y: position.y }}
-            transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
+            ref={btnRef}
+            animate={{ x: position.x, y: position.y, rotate: rotation }}
+            transition={{ type: "tween", duration: 0.4, ease: "easeInOut" }}
             onHoverStart={moveButton}
             onTouchStart={moveButton}
             style={buttonStyle}
