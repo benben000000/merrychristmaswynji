@@ -18,22 +18,27 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
     const [buttonStyle, setButtonStyle] = useState<any>({ position: 'absolute' });
 
     const moveButton = (e: any) => {
-        // Switch to fixed positioning on first interaction to allow full screen roaming
-        // but strictly bounded.
+        // Switch to fixed positioning on first interaction
 
-        // Safety margins
+        // Aggressive Safety margins
         const padding = 50;
-        const buttonWidth = 220; // Approx width of the "No" button
-        const buttonHeight = 60;
+        const assumedButtonWidth = 300; // Overestimate width to be safe
+        const assumedButtonHeight = 80;
 
-        const maxWidth = window.innerWidth - buttonWidth - padding;
-        const maxHeight = window.innerHeight - buttonHeight - padding;
+        // Calculate strict available area
+        const maxWidth = window.innerWidth - assumedButtonWidth - padding;
+        const maxHeight = window.innerHeight - assumedButtonHeight - padding;
 
-        const randomX = Math.max(padding, Math.random() * maxWidth);
-        const randomY = Math.max(padding, Math.random() * maxHeight);
+        // Ensure we don't return negative values if screen is tiny
+        const safeMaxWidth = Math.max(padding, maxWidth);
+        const safeMaxHeight = Math.max(padding, maxHeight);
+
+        // Generate random coordinate within precise bounds
+        const randomX = Math.floor(Math.random() * (safeMaxWidth - padding) + padding);
+        const randomY = Math.floor(Math.random() * (safeMaxHeight - padding) + padding);
 
         setButtonStyle({
-            position: 'fixed',
+            position: 'fixed', // Use fixed to ignore parent relative positioning
             left: 0,
             top: 0
         });
@@ -46,11 +51,11 @@ export const RunawayButton: React.FC<RunawayButtonProps> = ({ onAttemptClick }) 
     return (
         <motion.button
             animate={{ x: position.x, y: position.y }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            transition={{ type: "spring", stiffness: 500, damping: 20 }}
             onHoverStart={moveButton}
             onTouchStart={moveButton}
             style={buttonStyle}
-            className="px-8 py-3 bg-white text-red-600 font-extrabold rounded-full border-4 border-red-600 hover:bg-gray-100 transition-colors shadow-2xl z-40"
+            className="px-8 py-3 bg-white text-red-600 font-extrabold rounded-full border-4 border-red-600 hover:bg-gray-100 transition-colors shadow-2xl z-50 whitespace-nowrap"
         >
             {text}
         </motion.button>
