@@ -66,7 +66,10 @@ function App() {
                 Merry Christmas, Wynji! ❄️
               </h1>
 
-              <div className="glass-card p-20 w-[90vw] max-w-6xl min-h-[600px] flex flex-col items-center justify-center gap-16">
+              <div
+                className="glass-card p-16 flex flex-col items-center justify-center gap-12"
+                style={{ width: '50vw', minHeight: '500px' }}
+              >
                 <h2 className="text-3xl font-semibold text-white">Do you love me? ❤️</h2>
 
                 <div className="flex items-center gap-12 h-20 justify-center relative w-full">
